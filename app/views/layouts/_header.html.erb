@@ -6,8 +6,15 @@
         <li><%= link_to t("home"), root_path %></li>
         <li><%= link_to t("help"), help_path %></li>
         <li><%= link_to t("about"), about_path %></li>
-        <li class="signup-menu"><%= link_to t("signup"), signup_path %></li>
-        <li class="signup-menu"><%= link_to t("login"), "#" %></li>
+        <% if logged_in? %>
+          <li><%= link_to t("users"), '#' %></li>
+          <li><%= link_to t("profile"), current_user %></li>
+          <li><%= link_to t("setting"), '#' %></li>
+          <li><%= link_to t("logout"), logout_path, method: "delete" %></li>
+        <% else %>
+          <li class="signup-menu"><%= link_to t("signup"), signup_path %></li>
+          <li class="signup-menu"><%= link_to t("login"), "#" %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
